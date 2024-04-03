@@ -1,0 +1,14 @@
+.form{
+   max-width:500px;
+   margin:0 auto;
+   padding:20px;
+}
+.p {
+    text-align: match-parent;
+    font-size: 24px;
+    margin-left: 100/* Reset the default margin */
+ }
+ 
+ .container {
+    text-align: center; /* Center the content within the container */
+}

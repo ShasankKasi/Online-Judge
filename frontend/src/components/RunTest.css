@@ -1,0 +1,49 @@
+.boxx{
+    border:"1px";
+    border-radius:10px;
+    height:"50px";
+    width:"9px";
+    margin-bottom:10px;
+    padding:12px;
+    color: rgb(25, 25, 25);
+}
+
+.case1{
+    background-color: rgb(208, 205, 200);
+    margin: auto 50px;
+    border-radius: 10px;
+    
+}
+
+.case1 button:hover{
+    background-color: rgb(208, 205, 200);
+}
+.case2{
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+.case2 button:hover{
+    background-color: rgb(208, 205, 200);
+}
+.inputt{
+    padding: 15px;
+    border-radius: 10px;
+    width:40vw;
+    font-size:17px;
+    text-align:left;
+    /* margin: bottom 0; */
+    margin-left:8vw;
+    background-color: rgb(224, 228, 231);
+}
+
+.expected-output{
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 10px;
+    width:40vw;
+    text-align:left;
+    margin-bottom:45px;
+    margin-left:8vw;
+    background-color: rgb(224, 228, 231);
+}

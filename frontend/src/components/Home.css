@@ -1,0 +1,9 @@
+.titles {/* 100% of the viewport height */
+    background-color: #33b3c7;
+    border: 2px solid #e6ecf0;
+    border-radius:4px;
+    height: 50px;
+    width:1450px;
+    text-align: center;
+    margin-bottom: 20px;
+}
