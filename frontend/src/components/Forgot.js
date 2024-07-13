@@ -39,7 +39,7 @@ export default function Forgot() {
   return (
     <div>
     <Navbar/>
-    <div className="container">
+    <div className="containeer">
        <p className="p">Enter your Email to get OTP</p>
         <form action="POST" className="form">
             <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email'/>

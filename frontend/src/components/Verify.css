@@ -1,0 +1,8 @@
+.containers {
+   border: 2px solid #161212;
+   margin-top: 20vh; 
+   width: 80%; 
+   max-width: 300px; 
+   text-align: center; 
+   padding: 20px; 
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {useNavigate,useLocation} from "react-router-dom";
 import Navbar from './Navbar';
 import axios from 'axios';
+import './Verify.css'
 export default function Verify() {
   const[number,setNumber]=useState("");
   const navigate=useNavigate();
@@ -37,7 +38,7 @@ export default function Verify() {
     <div>
       <Navbar/>
 
-    <div style={{textAlign:"center",padding:"20px"}}>
+    <div className='containers'>
 
       {/* <h1>This is the otp verification page</h1> */}
       <input type="text" value={number} maxLength={4} onChange={(e)=>setNumber(e.target.value)}placeholder='Enter Otp'></input>

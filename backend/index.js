@@ -9,9 +9,12 @@ const nodemailer = require("nodemailer");
 const { generateFile } = require("./generateFile");
 const { executeCpp } = require("./executeCpp");
 const { Long } = require("mongodb");
+const bodyParser = require('body-parser');
+
 const otpStore = {};
 
 // Middlewares
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -20,6 +23,7 @@ dotenv.config();
 connectDatabase();
 // Post requests
 // Signup Post requests
+const admin=process.env.adminEmail;
 
 app.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
@@ -56,6 +60,9 @@ app.post("/login", async (req, res) => {
     const user = await colllection.findOne({ email: email });
     if (user) {
       if (user.password === password) {
+        if(String(user.email)===admin)
+          res.json({status:"admin",email:user.email,name:user.name});
+        else
         res.json({ status: "success", email: user.email, name: user.name });
       } else {
         res.json({ status: "incorrect password" });
