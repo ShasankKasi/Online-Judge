@@ -17,7 +17,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("8000/login", {
+      const response = await axios.post("/login", {
         email,
         password,
       });

@@ -33,7 +33,7 @@ const handleClick = async (
     const body = { testcases, language: "cpp", code, limit };
     console.log("a");
     const response = await axios.post(
-      `http://localhost:8000/Question/${id}`,
+      `/Question/${id}`,
       body
     );
     console.log("2");

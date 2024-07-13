@@ -13,7 +13,7 @@ export default function Verify() {
     e.preventDefault();
     try{
       // console.log("before posting the otp");
-      const response = await axios.post("http://localhost:8000/verify", {
+      const response = await axios.post("/verify", {
         email,
         number,  // assuming you have the 'otp' variable defined
       });
