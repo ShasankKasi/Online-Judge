@@ -10,7 +10,7 @@ export default function Forgot() {
     async function handleSubmit(e){
         e.preventDefault();
         try{
-        const response=await axios.post("/forgot",{
+        const response=await axios.post("http://13.51.168.80:8000/forgot",{
             email,
             
           });

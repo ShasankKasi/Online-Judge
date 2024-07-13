@@ -16,7 +16,7 @@ export default function Signup(){
     e.preventDefault();
 
     try{
-        const response=await axios.post("http://localhost:8000/signup",{
+        const response=await axios.post("http://13.51.168.80:8000/signup",{
             name,email,password,
         });
         if(response.data.status==="exist"){

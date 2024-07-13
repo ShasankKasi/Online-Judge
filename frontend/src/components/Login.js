@@ -17,7 +17,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/login", {
+      const response = await axios.post("http://13.51.168.80:8000/login", {
         email,
         password,
       });

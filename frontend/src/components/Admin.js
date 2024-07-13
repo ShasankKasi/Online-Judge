@@ -23,7 +23,7 @@ export default function Admin() {
    console.log(testcases);
 
    try{
-       const response=await axios.post("/admin",{title,description,testcases})
+       const response=await axios.post("http://13.51.168.80:8000/admin",{title,description,testcases})
        if(response.data.status==="success")
        {
         window.location.reload();
