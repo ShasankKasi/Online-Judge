@@ -10,6 +10,7 @@ const { generateFile } = require("./generateFile");
 const { executeCpp } = require("./executeCpp");
 const { Long } = require("mongodb");
 const bodyParser = require('body-parser');
+const path=require('path');
 
 const otpStore = {};
 
@@ -21,6 +22,12 @@ app.use(cors());
 
 dotenv.config();
 connectDatabase();
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 // Post requests
 // Signup Post requests
 const admin=process.env.adminEmail;
