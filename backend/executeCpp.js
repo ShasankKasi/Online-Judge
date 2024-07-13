@@ -16,7 +16,7 @@ const executeCpp=(filePath,filePath2)=>{
     // const fil1=`"${filePath}"`;
     return new Promise((resolve,reject)=>{
        exec(
-         `g++ "${filePath}" -o "${outPath}" && cd ${outputPath} && .\\${jobID}.exe <"${filePath2}"`,
+         `g++ "${filePath}" -o "${outPath}" && cd "${outputPath}" && ./${jobID}.exe <"${filePath2}"`,
          (error,stdout,stderr)=>
          {
 
