@@ -17,17 +17,17 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://13.51.168.80:8000/api/login", {
+      const response = await axios.post("/api/login", {
         email,
         password,
       });
       console.log(response);
       if (response.data.status === "success") {
-        navigate("http://13.51.168.80:8000/home", {
+        navigate("/home", {
           state: { email: response.data.email, name: response.data.name },
         });
       } else if (response.data.status === "admin") {
-        navigate("http://13.51.168.80:8000/forgot");
+        navigate("/forgot");
       } else if (response.data.status === "doesnotexist") {
         alert("Do Sign up First");
       } else if (response.data.status === "incorrect password") {

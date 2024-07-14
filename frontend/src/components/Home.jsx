@@ -20,7 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("http://13.51.168.80:8000/api/home")
+      .get("/api/home")
       .then((res) => setQuestion(res.data));
   }, []);
 

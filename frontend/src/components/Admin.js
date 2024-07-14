@@ -22,7 +22,7 @@ export default function Admin() {
     }
 
     try {
-      const response = await axios.post("http://13.51.168.80:8000/api/admin", {
+      const response = await axios.post("/api/admin", {
         title,
         description,
         testcases,

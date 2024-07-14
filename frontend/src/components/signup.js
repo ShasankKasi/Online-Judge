@@ -16,7 +16,7 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://13.51.168.80:8000/api/signup", {
+      const response = await axios.post("/api/signup", {
         name,
         email,
         password,
@@ -24,7 +24,7 @@ export default function Signup() {
       if (response.data.status === "exist") {
         alert("User already exists");
       } else if (response.data.status === "success") {
-        navigate("http://13.51.168.80:8000", { state: { id: email } });
+        navigate("/", { state: { id: email } });
       } else if (response.data.status === "passerror") {
         alert("Password should be atleast 8 letters");
       } else if (response.data.status === "emptyerror") {

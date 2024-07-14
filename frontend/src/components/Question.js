@@ -77,7 +77,7 @@ export default function Question() {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`http://13.51.168.80:8000/api/question/${id}`)
+      .get(`/api/question/${id}`)
       .then((res) => {
         setQuestion(res.data);
       })
