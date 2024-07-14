@@ -27,7 +27,7 @@ const handleClick = async (
     if (limit === 2) setY(false);
     checking(true);
     const body = { testcases, language: "cpp", code, limit };
-    const response = await axios.post(`/Question/${id}`, body);
+    const response = await axios.post(`/api/Question/${id}`, body);
     checking(false);
     if (limit !== 2) setY(true);
     if (response.data.status === "NoOutput") {
