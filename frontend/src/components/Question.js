@@ -19,28 +19,17 @@ const handleClick = async (
   setY,
   setSolve,
   setCorrect,
-  setError,
+  setError
 ) => {
   try {
-    console.log("1");
     setError(false);
-    console.log("1");
     setCorrect(false);
-    console.log("1");
     if (limit === 2) setY(false);
-    console.log("1");
     checking(true);
     const body = { testcases, language: "cpp", code, limit };
-    console.log("a");
-    const response = await axios.post(
-      `/Question/${id}`,
-      body
-    );
-    console.log("2");
+    const response = await axios.post(`/Question/${id}`, body);
     checking(false);
-    console.log("2");
     if (limit !== 2) setY(true);
-    console.log("2");
     if (response.data.status === "NoOutput") {
       console.log("No output");
     } else if (response.data.status === "Success") {
@@ -55,11 +44,12 @@ const handleClick = async (
       console.log(response.data.count);
       setPass(response.data.count);
       console.log("testcases failed");
-    } else if (response.data.status === "Compilation Error"){
+    } else if (response.data.status === "Compilation Error") {
       setError(true);
       setX(false);
-      setY(false)
-      console.log("Compilation Error", response.data.e);}
+      setY(false);
+      console.log("Compilation Error", response.data.e);
+    }
     setVerdict(response.data.results);
   } catch (e) {
     console.log(e);
@@ -83,11 +73,11 @@ export default function Question() {
   const [x, setX] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [correct, setCorrect] = useState(false);
-  const [error,setError]=useState(false);
+  const [error, setError] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`http://13.51.168.80:8000/question/${id}`)
+      .get(`http://13.51.168.80:8000/api/question/${id}`)
       .then((res) => {
         setQuestion(res.data);
       })
@@ -167,7 +157,7 @@ export default function Question() {
                     setY,
                     setSolve,
                     setCorrect,
-                    setError,
+                    setError
                   )
                 }
               >
@@ -208,10 +198,12 @@ export default function Question() {
           {error && (
             <div className="c-Error">
               <strong>Compilation Error :</strong>
-              <p className="c-error2">Check the possible syntax errors  and try running it again</p>
+              <p className="c-error2">
+                Check the possible syntax errors and try running it again
+              </p>
             </div>
           )}
-          {!error&&!y && (
+          {!error && !y && (
             <div className="result">
               <h1>
                 {!x ? (
@@ -227,7 +219,7 @@ export default function Question() {
               </h1>
             </div>
           )}
-          {!error&& y && (
+          {!error && y && (
             <div
               className="submitted"
               style={{ border: correct ? "4px solid green" : "4px solid red" }}
@@ -239,43 +231,41 @@ export default function Question() {
               </div>
               <table className="verdict-table">
                 <thead>
-
-                <tr>
-                  <th className="heading">No. of TestCases</th>
-                  <th>Test Cases Passed </th>
-                  <th>Verdict</th>
-                </tr>
+                  <tr>
+                    <th className="heading">No. of TestCases</th>
+                    <th>Test Cases Passed </th>
+                    <th>Verdict</th>
+                  </tr>
                 </thead>
                 <tbody>
-
-                <tr>
-                  <td className="heading">{question.testcases.length}</td>
-                  <td>{pass}</td>
-                  <td>
-                    {correct ? (
-                      <p
-                      style={{
-                        color: "white",
-                        padding: "8px",
-                        backgroundColor: "green",
-                      }}
-                      >
-                        Submitted
-                      </p>
-                    ) : (
-                      <p
-                      style={{
-                        color: "white",
-                        padding: "8px",
-                        backgroundColor: "red",
-                      }}
-                      >
-                        Failed
-                      </p>
-                    )}
-                  </td>
-                </tr>
-              </tbody>
+                  <tr>
+                    <td className="heading">{question.testcases.length}</td>
+                    <td>{pass}</td>
+                    <td>
+                      {correct ? (
+                        <p
+                          style={{
+                            color: "white",
+                            padding: "8px",
+                            backgroundColor: "green",
+                          }}
+                        >
+                          Submitted
+                        </p>
+                      ) : (
+                        <p
+                          style={{
+                            color: "white",
+                            padding: "8px",
+                            backgroundColor: "red",
+                          }}
+                        >
+                          Failed
+                        </p>
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               {!correct && (
                 <div className="info">

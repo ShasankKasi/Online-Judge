@@ -32,7 +32,7 @@ app.get('/', function(req, res) {
 // Signup Post requests
 const admin=process.env.adminEmail;
 
-app.post("/signup", async (req, res) => {
+app.post("/api/signup", async (req, res) => {
   const { name, email, password } = req.body;
   const data = {
     name: name,
@@ -60,7 +60,7 @@ app.post("/signup", async (req, res) => {
 });
 
 // Login post requests
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -84,7 +84,7 @@ app.post("/login", async (req, res) => {
 });
 
 // Forgot Password Post requests
-app.post("/forgot", async (req, res) => {
+app.post("/api/forgot", async (req, res) => {
   const { email } = req.body;
   try {
     const user = await colllection.findOne({ email: email });
@@ -121,7 +121,7 @@ app.post("/forgot", async (req, res) => {
 // })
 
 // Verify - post requests
-app.post("/verify", async (req, res) => {
+app.post("/api/verify", async (req, res) => {
   const { email, number } = req.body;
   try {
     if (
@@ -142,7 +142,7 @@ app.post("/verify", async (req, res) => {
 });
 
 // Compiler post requests
-// app.post("/question1", async (req, res) => {
+// app.post("/api/question1", async (req, res) => {
 //   // const language=req.body.language;
 //   // const code=req.body.code;
 //   const { language, code } = req.body;
@@ -159,7 +159,7 @@ app.post("/verify", async (req, res) => {
 // });
 
 // Home Get requests
-app.get("/home", async (req, res) => {
+app.get("/api/home", async (req, res) => {
   try {
     const users = await questionstore.find();
     res.json(users);
@@ -169,7 +169,7 @@ app.get("/home", async (req, res) => {
   }
 });
 
-app.get("/question/:id", async (req, res) => {
+app.get("/api/question/:id", async (req, res) => {
   try {
     const questions = await questionstore.find();
     const question = await questionstore.findById(req.params.id);
@@ -184,7 +184,7 @@ app.get("/question/:id", async (req, res) => {
 });
 
 // Admin POst requests
-app.post("/admin", async (req, res) => {
+app.post("/api/admin", async (req, res) => {
   const { title, description, testcases } = req.body;
   try {
     data = {
@@ -202,7 +202,7 @@ app.post("/admin", async (req, res) => {
 // Question post requests
 
 // Run testcases
-app.post("/question/:id", async (req, res) => {
+app.post("/api/question/:id", async (req, res) => {
   const { testcases, language, code ,limit} = req.body;
   if (code === undefined) {
     return res.status(404).json({ success: false, error: "Code is empty" });
