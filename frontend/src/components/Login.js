@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 import "./Login.css";
 import Navbar from "./Navbar";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -21,20 +22,19 @@ export default function Login() {
         email,
         password,
       });
-      console.log(response);
       if (response.data.status === "success") {
         navigate("/home", {
           state: { email: response.data.email, name: response.data.name },
         });
       } else if (response.data.status === "admin") {
-        navigate("/forgot");
+        navigate("/admin");
       } else if (response.data.status === "doesnotexist") {
-        alert("Do Sign up First");
+        toast.error("Do Sign up First");
       } else if (response.data.status === "incorrect password") {
-        alert("Please Enter Correct Password");
+        toast.error("Please Enter Correct Password");
       }
     } catch (e) {
-      console.log(e);
+      toast.error("Unknown error occured")
     }
   }
 

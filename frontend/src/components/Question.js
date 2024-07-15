@@ -6,6 +6,7 @@ import "./Question.css";
 import axios from "axios";
 import Spinner from "./Spinner.gif";
 import RunTest from "./RunTest";
+import toast from "react-hot-toast";
 
 const handleClick = async (
   testcases,
@@ -31,30 +32,26 @@ const handleClick = async (
     checking(false);
     if (limit !== 2) setY(true);
     if (response.data.status === "NoOutput") {
-      console.log("No output");
+      toast.error("No output")
     } else if (response.data.status === "Success") {
       setX(true);
       setSolve(response.data.solve);
-      console.log(`${response.data.count}Testcases ran successfully`);
+      toast.success("Test cases ran successfully")
       setPass(response.data.count);
       setCorrect(true);
     } else if (response.data.status === "Fail") {
       setX(true);
       setSolve(response.data.solve);
-      console.log(response.data.count);
       setPass(response.data.count);
-      console.log("testcases failed");
     } else if (response.data.status === "Compilation Error") {
       setError(true);
       setX(false);
       setY(false);
-      console.log("Compilation Error", response.data.e);
+      toast.error("Compilation error")
     }
     setVerdict(response.data.results);
   } catch (e) {
-    console.log(e);
-    console.log("error occurred");
-  }
+    toast.error("Unknown error occured")  }
 };
 export default function Question() {
   // const navigate=useNavigate();
@@ -68,7 +65,6 @@ export default function Question() {
   const [question, setQuestion] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [verdict, setVerdict] = useState([]);
-  const [present, setPresent] = useState(false);
   const [running, setRunning] = useState(false);
   const [x, setX] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -82,7 +78,7 @@ export default function Question() {
         setQuestion(res.data);
       })
       .catch((e) => {
-        console.log(e);
+        toast.error("Unknown error occured")
       })
       .finally(() => {
         setIsLoading(false);
@@ -93,7 +89,7 @@ export default function Question() {
     <div>
       <Homebar />
       {isLoading ? (
-        <>"Loading. the Problem Page..."</>
+        <Spinner/>
       ) : (
         <>
           <div>

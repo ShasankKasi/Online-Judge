@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import "./Forgot.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 export default function Forgot() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -13,21 +14,17 @@ export default function Forgot() {
       const response = await axios.post("/api/forgot", {
         email,
       });
-      console.log("post request done");
       if (response.data.status === "otpsent") {
+        toast.success("Otp sent successfully")
         navigate("/verify", { state: { email } });
-        console.log("verification not done");
       }
-      // console.log("asg");
       else if (response.data.status === "doesnotexist") {
-        alert("User doesnot exist");
+        toast.error("User doesnot exist");
       } else {
-        console.log("error");
+        toast.error("Unknown error")
       }
     } catch (e) {
-      // console.log("catching error");
-      console.log("verification error");
-      console.log(e);
+      toast.error("verification error");
     }
   }
   return (
@@ -42,7 +39,6 @@ export default function Forgot() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
           />
-          {/* <br></br> */}
           <button type="submit" onClick={handleSubmit}>
             Submit
           </button>

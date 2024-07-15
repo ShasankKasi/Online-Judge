@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 // import "bootstrap/scss/bootstrap";
 import "./signup.css";
 import Navbar from "./Navbar";
+import toast from "react-hot-toast";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -22,17 +23,16 @@ export default function Signup() {
         password,
       });
       if (response.data.status === "exist") {
-        alert("User already exists");
+        toast.error("User already exists");
       } else if (response.data.status === "success") {
         navigate("/", { state: { id: email } });
       } else if (response.data.status === "passerror") {
-        alert("Password should be atleast 8 letters");
+        toast.error("Password should be atleast 8 letters");
       } else if (response.data.status === "emptyerror") {
-        alert("Enter Valid Details");
+        toast.error("Enter Valid Details");
       }
     } catch (e) {
-      alert("Wrong details");
-      console.log(e);
+      toast.error("Error in details entered. Please check the details again");
     }
   }
   return (

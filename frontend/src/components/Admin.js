@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+// import { useNavigate } from "react-router-dom";
 
 export default function Admin() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [input, setInput] = useState([]);
   const [output, setOutput] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -29,10 +30,10 @@ export default function Admin() {
       });
       if (response.data.status === "success") {
         window.location.reload();
-        alert("Question Submitted Successfullly.\nPost Another Question");
+        toast.success("Question Submitted Successfullly.\nPost Another Question");
       }
     } catch (e) {
-      console.log(e);
+      toast.error("Error occured");
     }
   }
   return (

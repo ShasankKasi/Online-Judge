@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 import "./Verify.css";
+import toast from "react-hot-toast";
 export default function Verify() {
   const [number, setNumber] = useState("");
   const navigate = useNavigate();
@@ -11,22 +12,19 @@ export default function Verify() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      // console.log("before posting the otp");
       const response = await axios.post("/api/verify", {
         email,
         number, // assuming you have the 'otp' variable defined
       });
-      // console.log("before ifelse")
       if (response.data && response.data.status === "success") {
+        toast.success("Verification done");
         const name = response.data.userName;
         navigate("/home", { state: { email, name } });
       } else {
-        console.log("otp false");
-        alert("Otp is incorrect");
+        toast.error("Otp is incorrect");
       }
     } catch (e) {
-      console.log("verification error");
-      console.log(e);
+      toast.error("Unknown error occured")
     }
   }
 
@@ -35,7 +33,6 @@ export default function Verify() {
       <Navbar />
 
       <div className="containers">
-        {/* <h1>This is the otp verification page</h1> */}
         <input
           type="text"
           value={number}

@@ -16,13 +16,7 @@ export default function RunTest(props) {
   return (
     <div>
       <div className="boxx">
-        {/* <div> <h1>Input</h1></div>
-        <div> <h2>{props.testcases[0].input}</h2></div>
-        <div><h1>Output</h1></div>
-        <div><h2>{props.testcases[0].output}</h2></div>
-        <div> <h1>Required Output</h1></div>
-        <div> {props.flag?props.verdict[0]:""}</div>  */}
-        <div>
+                <div>
           {accepted1 && !trigger && (
             <p style={{ color: "green" }}>&nbsp;&nbsp;&nbsp;&nbsp;Accepted</p>
           )}
