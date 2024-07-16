@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import Homebar from "./Homebar";
 import "./Question.css";
 import axios from "axios";
-import Spinner from "./Spinner.gif";
 import RunTest from "./RunTest";
 import toast from "react-hot-toast";
+import SpinnerMini from "../ui/SpinnerMini";
+import Spinner from "../ui/Spinner";
 
 const handleClick = async (
   testcases,
@@ -56,6 +57,7 @@ const handleClick = async (
 export default function Question() {
   // const navigate=useNavigate();
   const [pass, setPass] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const { id, title, description, testcases } = useParams();
   const [code, setCode] = useState(
     "// Enter the code here \n #include<bits/stdc++.h>\n using namespace std;\n \nint main()\n{\n\n return 0;\n}"
@@ -158,7 +160,7 @@ export default function Question() {
                 }
               >
                 {running ? (
-                  <img className="loading-image" src={Spinner} alt="spinner" />
+                  <Spinner/>
                 ) : (
                   "Run"
                 )}
@@ -184,7 +186,7 @@ export default function Question() {
                 }
               >
                 {submitting ? (
-                  <img className="loading-image" src={Spinner} alt="spinner" />
+                 <SpinnerMini/>
                 ) : (
                   "Submit"
                 )}
