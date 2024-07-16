@@ -28,9 +28,15 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+//INfo from env
+const admin=process.env.adminEmail;
+const SenderEmail=process.env.SenderEmail;
+const passkey=process.env.adminPass;
+
 // Post requests
 // Signup Post requests
-const admin=process.env.adminEmail;
+
 
 app.post("/api/signup", async (req, res) => {
   const { name, email, password } = req.body;
@@ -98,7 +104,7 @@ app.post("/api/forgot", async (req, res) => {
 
       otpStore[email] = randomOtp;
 
-      sendEmail(
+      await sendEmail(
         email,
         "Forgot Password-Otp Verification",
         `Your Otp for Verification of Email is ${randomOtp}`
@@ -107,10 +113,9 @@ app.post("/api/forgot", async (req, res) => {
     }
     // console.log("else");
     else {
-      res.json({ status: "doesnotexist" });
+      res.json({ status: "Doesnotexist" });
     }
   } catch (e) {
-    console.log(e);
     res.json({ status: "fail" });
   }
 });
@@ -136,7 +141,7 @@ app.post("/api/verify", async (req, res) => {
       res.json({ status: "otpincorrect" });
     }
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     res.status(500).json({ status: "error", message: "Internal Server Error" });
   }
 });
@@ -195,7 +200,7 @@ app.post("/api/admin", async (req, res) => {
     await questionstore.create(data);
     res.json({ status: "success" });
   } catch (e) {
-    console.log(e);
+    res.json({status:"Failed"})
   }
 });
 
@@ -239,23 +244,22 @@ app.post("/api/question/:id", async (req, res) => {
 });
 // send email function
 async function sendEmail(to, subject, text) {
-  const transporter = nodemailer.createTransport({
+  const transporter = await nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "kasishasank2004@gmail.com",
-      pass: "qmawvshejuxhdhlh",
+      user: String(SenderEmail),
+      pass: String(passkey),
     },
   });
 
   const mailOptions = {
-    from: "kasishasank2004@gmail.com",
+    from: String(SenderEmail),
     to,
     subject,
-    // :'Forgot Password-Otp Verification',
     text,
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
+   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log("trans", error);
     } else {
