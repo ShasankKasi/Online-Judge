@@ -1,9 +1,11 @@
 // import Navbar from "./Navbar";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Homebar from "./Homebar";
 import { useState, useEffect } from "react";
 import "./Home.css";
 import axios from "axios";
+import Table from "../ui/Table";
+import QuestionRow from "./QuestionRow";
 const capitalizeFirstLetter = (str) => {
   if (typeof str !== 'string' || str.length === 0) {
     return ''; 
@@ -11,6 +13,7 @@ const capitalizeFirstLetter = (str) => {
 
   return ", "+str.charAt(0).toUpperCase() + str.slice(1);
 };
+
 export default function Home() {
   const location = useLocation();
   // const navigate = useNavigate();
@@ -27,26 +30,17 @@ export default function Home() {
   return (
     <div>
       <Homebar />
-      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+      <h1 style={{ textAlign: "center", marginBottom: "20px"}}>
         Welcome {capitalizeFirstLetter(name)}
       </h1>
-      <div>
-        <ul>
-          {question.map((item) => (
-            <li key={item._id}>
-              <div>
-                <Link
-                  to={`/Question/${item._id}`}
-                  state={{ id:item._id,title:item.title,description:item.description,testcases:item.testcases}}
-                  className="titles"
-                >
-                  <strong>{item.title}</strong>
-                </Link>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <>
+        <Table columns="0.9fr 1.8fr 2.2fr 1fr 1fr 1fr 1fr">
+           <Table.Body
+          data={question}
+          render={(item) => <QuestionRow question={item}/>}
+        />
+        </Table>
+      </>
     </div>
   );
 }
