@@ -2,7 +2,7 @@
 
 This online judge platform is designed to help users solve coding problems in various languages. It provides functionality to run test cases and submit solutions for evaluation. The platform is built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 
-![image](https://github.com/user-attachments/assets/51106594-3db1-44d4-afb2-0d0d326d5cb0)
+![logo](https://github.com/user-attachments/assets/d1e59d57-7caa-4a46-bea6-cf47198369b0)
 
 ## Features
 
@@ -12,6 +12,8 @@ This online judge platform is designed to help users solve coding problems in va
 - **Multi-language Support**: Execute code written in C, C++, Python, and Java.
 - **Result Verdict**: Displays verdicts (e.g., Wrong, Accepted) for submitted solutions.
 - **Problem Filtering**: Filter problems by difficulty level (Easy, Medium, Hard).
+
+![image](https://github.com/user-attachments/assets/51106594-3db1-44d4-afb2-0d0d326d5cb0)
 
 ## Project Structure
 
@@ -38,15 +40,12 @@ This online judge platform is designed to help users solve coding problems in va
 
 ## Deployment
 
-Check out the live version of our platform here: (http://13.51.168.80:8000)
+Check out the live version of our platform here: http://13.51.168.80:8000
 
 ## Contact
 
-For any questions or feedback, feel free to contact me at [shasankreddy4563@gmail.com].
+For any questions or feedback, feel free to contact me at : shasankreddy4563@gmail.com.
 
 ---
 
 Thank you for using Code Soldiers Online Judge Platform! Happy coding!
-```
-
-Replace `https://your-deployment-link.com` with the actual URL of your deployed platform.
