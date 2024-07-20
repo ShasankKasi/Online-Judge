@@ -11,7 +11,7 @@ if (!fs.existsSync(outputPath)) {
 const execute = (filePath, filePath2, language) => {
   if (language === "py") {
     return new Promise((resolve, reject) => {
-      exec(`python "${filePath}" < "${filePath2}"`, (error, stdout, stderr) => {
+      exec(`python3 "${filePath}" < "${filePath2}"`, (error, stdout, stderr) => {
         if (error) {
           // console.log(error);
           reject({ error, stderr });
@@ -28,7 +28,7 @@ const execute = (filePath, filePath2, language) => {
   } else if ( language == "java"){
     return new Promise((resolve, reject) => {
       console.log(filePath);
-      exec(`java ${filePath} < ${filePath2}`, (error, stdout, stderr) => {
+      exec(`javac "${filePath}"`, (error, stdout, stderr) => {
         if (error) {
           // console.log(error);
           reject({ error, stderr });
@@ -49,7 +49,7 @@ const execute = (filePath, filePath2, language) => {
     // const fil1=`"${filePath}"`;
     return new Promise((resolve, reject) => {
       exec(
-        `g++ "${filePath}" -o "${outPath}" && cd ${outputPath} && .\\${jobID}.exe <"${filePath2}"`,
+        `g++ "${filePath}" -o "${outPath}" && cd "${outputPath}" && ./${jobID}.exe <"${filePath2}"`,
         (error, stdout, stderr) => {
           if (error) {
             console.log(error);
