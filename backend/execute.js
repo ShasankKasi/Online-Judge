@@ -25,7 +25,7 @@ const execute = (filePath, filePath2, language) => {
         resolve(stdout.trim());
       });
     });
-  } else if ( language == "java"){
+  } else if (language == "java") {
     return new Promise((resolve, reject) => {
       console.log(filePath);
       exec(`javac "${filePath}"`, (error, stdout, stderr) => {
@@ -42,8 +42,7 @@ const execute = (filePath, filePath2, language) => {
         resolve(stdout.trim());
       });
     });
-  }
-  else {
+  } else {
     const jobID = path.basename(filePath).split(".")[0];
     const outPath = path.join(outputPath, `${jobID}.exe`);
     // const fil1=`"${filePath}"`;

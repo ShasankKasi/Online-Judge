@@ -9,8 +9,8 @@ const nodemailer = require("nodemailer");
 const { generateFile } = require("./generateFile");
 const { execute } = require("./execute");
 const { Long } = require("mongodb");
-const bodyParser = require('body-parser');
-const path=require('path');
+const bodyParser = require("body-parser");
+const path = require("path");
 const { log } = require("console");
 
 const otpStore = {};
@@ -24,20 +24,15 @@ app.use(cors());
 dotenv.config();
 connectDatabase();
 
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+app.use(express.static(path.join(__dirname, "build")));
 
 //INfo from env
-const admin=process.env.adminEmail;
-const SenderEmail=process.env.SenderEmail;
-const passkey=process.env.adminPass;
+const admin = process.env.adminEmail;
+const SenderEmail = process.env.SenderEmail;
+const passkey = process.env.adminPass;
 
 // Post requests
 // Signup Post requests
-
 
 app.post("/api/signup", async (req, res) => {
   const { name, email, password } = req.body;
@@ -74,10 +69,10 @@ app.post("/api/login", async (req, res) => {
     const user = await colllection.findOne({ email: email });
     if (user) {
       if (user.password === password) {
-        if(String(user.email)===admin)
-          res.json({status:"admin",email:user.email,name:user.name});
+        if (String(user.email) === admin)
+          res.json({ status: "admin", email: user.email, name: user.name });
         else
-        res.json({ status: "success", email: user.email, name: user.name });
+          res.json({ status: "success", email: user.email, name: user.name });
       } else {
         res.json({ status: "incorrect password" });
       }
@@ -165,7 +160,6 @@ app.get("/api/home", async (req, res) => {
   }
 });
 
-
 app.get("/api/question/:id", async (req, res) => {
   try {
     const questions = await questionstore.find();
@@ -192,7 +186,7 @@ app.post("/api/admin", async (req, res) => {
     await questionstore.create(data);
     res.json({ status: "success" });
   } catch (e) {
-    res.json({status:"Failed"})
+    res.json({ status: "Failed" });
   }
 });
 
@@ -200,37 +194,36 @@ app.post("/api/admin", async (req, res) => {
 
 // Run testcases
 app.post("/api/question/:id", async (req, res) => {
-  const { testcases, language, code ,limit} = req.body;
+  const { testcases, language, code, limit } = req.body;
   if (code === undefined) {
     return res.status(404).json({ success: false, error: "Code is empty" });
   } else {
     try {
       let count = 0;
-      let results=[];
-      let solve=[false,false,false,false,false];
+      let results = [];
+      let solve = [false, false, false, false, false];
       for (let i = 0; i < limit; i++) {
         let input = testcases[i].input;
         let output_req = testcases[i].output.trim();
         let { filePath, filePath2 } = await generateFile(language, code, input);
-        let output = await execute(filePath, filePath2,language);
+        let output = await execute(filePath, filePath2, language);
         output = output.trim();
         output_req = output_req.trim();
 
-        results[i]=output;
+        results[i] = output;
 
         if (output === output_req) {
           count++;
-          solve[i]=true;
+          solve[i] = true;
+        } else if (limit > 2) {
+          break;
         }
-        else if(limit>2){
-      break;}
       }
-      if (count==limit) {
-        res.json({ status: "Success",count,results,solve});
-      }
-      else res.json({ status: "Fail" ,results,count,solve});
+      if (count == limit) {
+        res.json({ status: "Success", count, results, solve });
+      } else res.json({ status: "Fail", results, count, solve });
     } catch (e) {
-      res.json({ status:"Compilation Error",err:e});
+      res.json({ status: "Compilation Error", err: e });
     }
   }
 });
@@ -251,7 +244,7 @@ async function sendEmail(to, subject, text) {
     text,
   };
 
-   transporter.sendMail(mailOptions, function (error, info) {
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log("trans", error);
     } else {
@@ -259,6 +252,9 @@ async function sendEmail(to, subject, text) {
     }
   });
 }
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 // Port
 app.listen(Port, () => {
   console.log("Server Connected");

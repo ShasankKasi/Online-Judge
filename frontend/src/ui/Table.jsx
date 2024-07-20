@@ -90,7 +90,7 @@ function Body({ data, render }) {
 
   return (
     <StyledBody>
-      {data.map((item, index) => (
+      {data?.map((item, index) => (
         <React.Fragment key={item.id || index}>
           {render(item)}
         </React.Fragment>

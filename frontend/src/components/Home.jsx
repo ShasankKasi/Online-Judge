@@ -2,10 +2,40 @@ import React, { useState } from "react";
 import Homebar from "./Homebar";
 import "./Home.css";
 import axios from "axios";
-import Table from "../ui/Table";
 import QuestionRow from "./QuestionRow";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Spinner from "../ui/Spinner";
+import styled from "styled-components";
+
+const StyledTable = styled.div`
+  border: 1px solid var(--color-grey-200);
+  font-size: 1.4rem;
+  background-color: var(--color-grey-0);
+  border-radius: 7px;
+  overflow: hidden;
+`;
+
+const CommonRow = styled.div`
+  display: grid;
+  grid-template-columns: ${(props) => props.columns};
+  column-gap: 2.4rem;
+  align-items: center;
+  transition: none;
+`;
+
+const StyledHeader = styled(CommonRow)`
+  padding: 1.6rem 2.4rem;
+  background-color: var(--color-grey-50);
+  border-bottom: 1px solid var(--color-grey-100);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  color: var(--color-grey-600);
+`;
+
+const StyledBody = styled.section`
+  margin: 0.4rem 0;
+`;
 
 export default function Home() {
   const [difficulty, setDifficulty] = useState("all");
@@ -18,7 +48,11 @@ export default function Home() {
     return response.data;
   };
 
-  const { data: questions = [], isLoading, error } = useQuery({
+  const {
+    data: questions = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["questions", difficulty],
     queryFn: () => fetchQuestions(difficulty),
     refetchOnWindowFocus: false,
@@ -81,12 +115,14 @@ export default function Home() {
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : (
-        <Table columns="0.9fr 1.8fr 2.2fr 1fr 1fr 1fr 1fr">
-          <Table.Body
-            data={questions}
-            render={(item) => <QuestionRow question={item} key={item.id} />}
-          />
-        </Table>
+        <StyledTable>
+          <StyledHeader columns="0.9fr 1.8fr 2.2fr 1fr 1fr 1fr 1fr"></StyledHeader>
+          <StyledBody>
+            {questions.map((question) => (
+              <QuestionRow key={question.id} question={question} />
+            ))}
+          </StyledBody>
+        </StyledTable>
       )}
     </div>
   );

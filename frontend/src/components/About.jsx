@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Homebar from "./Homebar";
-import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 
 const AboutContainer = styled.div`
   padding: 3rem;
@@ -77,22 +76,6 @@ const Logo = styled.img`
   margin-bottom: 2rem;
 `;
 
-const ContactItem = styled.p`
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const EmailLink = styled.a`
-  color: #333;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 const About = () => {
   return (
     <>
@@ -107,9 +90,9 @@ const About = () => {
         </Text>
         <SectionTitle>Our Mission</SectionTitle>
         <Text>
-          Our mission is to foster learning and skill development in programming,
-          offering a range of curated coding challenges that cater to both
-          beginners and experienced developers.
+          Our mission is to foster learning and skill development in
+          programming, offering a range of curated coding challenges that cater
+          to both beginners and experienced developers.
         </Text>
         <SectionTitle>Why Choose Us?</SectionTitle>
         <List>

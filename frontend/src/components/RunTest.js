@@ -33,11 +33,16 @@ export default function RunTest(props) {
       </div>
       <div className="results">
         {accepted1 && !trigger && (
-          <p style={{ color: "green" }}>Accepted &nbsp;<MdAccessTimeFilled/> &nbsp;{props.timeTaken} s</p>
-          
+          <p style={{ color: "green" }}>
+            Accepted &nbsp;
+            <MdAccessTimeFilled /> &nbsp;{props.timeTaken} s
+          </p>
         )}
         {accepted2 && trigger && (
-          <p style={{ color: "green" }}>Accepted &nbsp;<MdAccessTimeFilled/> &nbsp;{props.timeTaken} s</p>
+          <p style={{ color: "green" }}>
+            Accepted &nbsp;
+            <MdAccessTimeFilled /> &nbsp;{props.timeTaken} s
+          </p>
         )}
         {props.flag && !props.solve[0] && !trigger && (
           <p style={{ color: "red" }}>Wrong Answer</p>
@@ -49,19 +54,25 @@ export default function RunTest(props) {
           <p>
             <>Input :</>
             &nbsp;
-            {!trigger ? `${props.testcases[0].input}` : `${props.testcases[1].input}`}
+            {!trigger
+              ? `${props.testcases[0].input}`
+              : `${props.testcases[1].input}`}
           </p>
         </div>
         {props.flag && (
           <div className="expected-output">
-            <p>{`Output : ${!trigger ? props.verdict[0] : props.verdict[1]}`}</p>
+            <p>{`Output : ${
+              !trigger ? props.verdict[0] : props.verdict[1]
+            }`}</p>
           </div>
         )}
         <div className="expected-output">
           <p>
             <>Expected :</>
             &nbsp;
-            {!trigger ? `${props.testcases[0].output}` : `${props.testcases[1].output}`}
+            {!trigger
+              ? `${props.testcases[0].output}`
+              : `${props.testcases[1].output}`}
           </p>
         </div>
       </div>

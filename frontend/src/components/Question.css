@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -9,7 +11,7 @@
   width: 100%;
   max-width: 1450px;
   text-align: justify;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0 auto 20px;
   padding: 20px;
   font-size: 19px;
@@ -53,7 +55,6 @@
   flex-direction: column;
   background-color: white;
   width: 100%;
-
 }
 
 .text {
@@ -68,7 +69,14 @@
 .compiler {
   display: flex;
   align-items: center;
+  min-width: 300px;
+  min-height: 200px;
+  border: 1px solid #ccc; /* Add border */
+  padding: 10px; /* Add padding */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
 }
+
 
 .button {
   padding: 10px 20px;
@@ -116,7 +124,7 @@
 .submitted {
   height: auto;
   margin: 0 auto 5px;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-content: center;
   font-size: 17px;
@@ -148,7 +156,8 @@
   padding: 10px;
 }
 
-th, td {
+th,
+td {
   border: 2px solid rgb(8, 101, 111);
   padding: 15px;
 }
@@ -157,24 +166,24 @@ th, td {
   margin-top: 20px;
   text-align: left;
   align-content: center;
-  margin:auto;
+  margin: auto;
 }
-.language-selector { 
+.language-selector {
   display: flex;
-  margin-left: 14vh;;
-  align-items: center;  
-  margin-bottom: 10px;  
+  margin-left: 14vh;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .language-selector label {
-  margin-right: 10px;  
-  font-weight: bold;  
+  margin-right: 10px;
+  font-weight: bold;
 }
 
 .language-selector select {
-  border: 1px solid #ccc; 
-  border-radius: 4px; 
-  padding: 5px;  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
 }
 
 .failed-input {

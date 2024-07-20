@@ -23,12 +23,18 @@ export default function Login() {
       });
 
       if (response.data.status === "success") {
-        queryClient.setQueryData(["user"], {email:response.data.email,name:response.data.name});
-        queryClient.setQueryData(["isAuthenticated"],{ auth:true,});
+        queryClient.setQueryData(["user"], {
+          email: response.data.email,
+          name: response.data.name,
+        });
+        queryClient.setQueryData(["isAuthenticated"], { auth: true });
         navigate("/home");
       } else if (response.data.status === "admin") {
-        queryClient.setQueryData(["user"], {email:response.data.email,name:response.data.name});
-        queryClient.setQueryData(["isAuthenticated"],{ auth:true,});
+        queryClient.setQueryData(["user"], {
+          email: response.data.email,
+          name: response.data.name,
+        });
+        queryClient.setQueryData(["isAuthenticated"], { auth: true });
         navigate("/admin");
       } else if (response.data.status === "doesnotexist") {
         toast.error("User does not exist. Please sign up.");

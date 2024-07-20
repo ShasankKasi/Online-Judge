@@ -9,7 +9,7 @@ export default function Admin() {
   const [description, setDescription] = useState("");
   const [input, setInput] = useState([]);
   const [output, setOutput] = useState([]);
-  const [difficulty,setDifficulty]=useState('easy');
+  const [difficulty, setDifficulty] = useState("easy");
   // const navigate = useNavigate();
   const handleChange = (event) => {
     setDifficulty(event.target.value);
@@ -33,14 +33,15 @@ export default function Admin() {
         difficulty,
       });
       if (response.data.status === "success") {
-        toast.success("Question Submitted Successfullly.\nPost Another Question");
+        toast.success(
+          "Question Submitted Successfullly.\nPost Another Question"
+        );
       }
     } catch (e) {
       toast.error("Error occured");
     }
   }
   return (
-    
     <div>
       <Homebar />
       <form action="POST" onSubmit={handleSubmit}>
@@ -140,17 +141,17 @@ export default function Admin() {
             ></textarea>
           </div>
         </div>
-            <label htmlFor="difficulty">Select Difficulty Level : </label>
-      <select
-        id="difficulty"
-        name="difficulty"
-        value={difficulty}
-        onChange={handleChange}
-      >
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
+        <label htmlFor="difficulty">Select Difficulty Level : </label>
+        <select
+          id="difficulty"
+          name="difficulty"
+          value={difficulty}
+          onChange={handleChange}
+        >
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>

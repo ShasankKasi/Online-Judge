@@ -15,13 +15,12 @@ export default function Forgot() {
         email,
       });
       if (response.data.status === "otpsent") {
-        toast.success("Otp sent successfully")
+        toast.success("Otp sent successfully");
         navigate("/verify", { state: { email } });
-      }
-      else if (response.data.status === "doesnotexist") {
+      } else if (response.data.status === "doesnotexist") {
         toast.error("User doesnot exist");
       } else {
-        toast.error("Unknown error")
+        toast.error("Unknown error");
       }
     } catch (e) {
       toast.error("verification error");

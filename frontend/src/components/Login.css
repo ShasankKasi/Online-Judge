@@ -1,141 +1,139 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #e1e3eb;
-  }
-  
-  .main {
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    min-height: 100vh; /* Adjusted to min-height to prevent sticking */
-  }
-  
-  .sub-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: auto;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 20px;
-    background-color: white;
-    margin-top: 20px; /* Added margin to separate from navbar */
-    margin-bottom: 20vh; /* Added margin to separate from bottom */
-  }
-  
-  .imgs {
-    justify-content: center;
-    display: flex;
-  }
-  
-  .container-image {
-    background-color: rgb(223, 221, 221);
-    border-radius: 50%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    height: 100px;
-    width: 100px;
-  }
-  
-  .profile-icon {
-    height: 80px; /* Adjust as needed */
-    width: 80px; /* Adjust as needed */
-    border-radius: 50%;
-  }
-  
-  h1 {
-    margin-bottom: 20px; /* Decreased margin for tighter spacing */
-    font-size: 24px; /* Slightly reduced font size for tighter layout */
-    color: #333;
-  }
-  
-  form {
-    width: 100%;
-  }
-  
-  input {
-    width: calc(100% - 60px);
-    height: 40px;
-    border-radius: 20px;
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
-    outline: none;
-    background-color: #fff;
-    margin-bottom: 16px; /* Decreased margin for tighter spacing */
-    padding-left: 50px;
-    font-size: 16px;
-  }
-  
-  .email {
-    height: 20px;
-    width: 20px;
-    position: absolute;
-    margin-left: 20px;
-    margin-top: 10px;
-  }
-  
-  .name {
-    padding-left: 40px;
-    font-size: 16px;
-  }
-  
-  .second-input {
-    margin-bottom: 16px; /* Decreased margin for tighter spacing */
-  }
-  
-  button {
-    width: 100%;
-    height: 42px; /* Decreased button height for a more compact look */
-    border-radius: 20px;
-    background-color: #007bff;
-    color: white;
-    font-size: 18px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .login-button {
-    margin-top: 16px; /* Decreased margin for tighter spacing */
-  }
-  
-  .link {
-    font-size: 14px;
-    font-weight: 400;
-    margin-top: 16px; /* Decreased margin for tighter spacing */
-  }
-  
-  a {
-    color: blue;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Adjust the hover color for link buttons */
-  .link-button {
-    background: none;
-    border: none;
-    color: blue;
-    cursor: pointer;
-    text-decoration: underline;
-    padding: 6px; /* Adjusted padding for link buttons */
-    font: inherit;
-  }
-  
-  .link-button:hover {
-    color: rgb(255, 255, 255); /* Change hover color to match your design */
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #e1e3eb;
+}
+
+.main {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  min-height: 100vh;
+}
+
+.sub-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 20px;
+  background-color: white;
+  margin-top: 20px;
+  margin-bottom: 20vh;
+}
+
+.imgs {
+  justify-content: center;
+  display: flex;
+}
+
+.container-image {
+  background-color: rgb(223, 221, 221);
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+}
+
+.profile-icon {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+form {
+  width: 100%;
+}
+
+input {
+  width: calc(100% - 60px);
+  height: 40px;
+  border-radius: 20px;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  outline: none;
+  background-color: #fff;
+  margin-bottom: 16px;
+  padding-left: 50px;
+  font-size: 16px;
+}
+
+.email {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.name {
+  padding-left: 40px;
+  font-size: 16px;
+}
+
+.second-input {
+  margin-bottom: 16px;
+}
+
+button {
+  width: 100%;
+  height: 42px;
+  border-radius: 20px;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.login-button {
+  margin-top: 16px;
+}
+
+.link {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 16px;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 6px;
+  font: inherit;
+}
+
+.link-button:hover {
+  color: rgb(255, 255, 255);
+}

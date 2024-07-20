@@ -1,46 +1,46 @@
 .boxx {
-    border: 2px solid #e6ecf0;
-    border-radius: 10px;
-    background-color: white;
-    padding: 20px;
-    color: rgb(25, 25, 25);
-    width: 80vh;
-    margin: 20px auto; /* Center the box and add margin */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Increase the gap between buttons */
-    margin-bottom: 20px;
-  }
-  
-  .case {
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-  
-  .case.active {
-    background-color: rgb(208, 205, 200);
-  }
-  
-  .case:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .results {
-    width: 100%;
-  }
-  
-  .inputt, .expected-output {
-    padding: 15px;
-    font-size: 17px;
-    border-radius: 10px;
-    background-color: rgb(224, 228, 231);
-    margin: 10px 0;
-  }
-  
+  border: 2px solid #e6ecf0;
+  border-radius: 10px;
+  background-color: white;
+  padding: 20px;
+  color: rgb(25, 25, 25);
+  width: 80vh;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.case {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.case.active {
+  background-color: rgb(208, 205, 200);
+}
+
+.case:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.results {
+  width: 100%;
+}
+
+.inputt,
+.expected-output {
+  padding: 15px;
+  font-size: 17px;
+  border-radius: 10px;
+  background-color: rgb(224, 228, 231);
+  margin: 10px 0;
+}

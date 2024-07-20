@@ -16,7 +16,7 @@
   gap: 10px;
   margin-bottom: 20px;
   margin-left: 5px;
-  margin-right:5px;
+  margin-right: 5px;
 }
 
 .filter-container button {
@@ -29,10 +29,8 @@
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-.filter-container button.all
-.filter-container button.easy {
+.filter-container button.all .filter-container button.easy {
   background-color: #007bff;
-
 }
 
 .filter-container button.medium {
@@ -56,7 +54,7 @@
   font-weight: bold;
   font-family: cursive;
   font-size: x-large;
-  padding:3px;
+  padding: 3px;
 }
 
 .filter-container button.active.medium {
@@ -66,8 +64,7 @@
   font-weight: bold;
   font-family: cursive;
   font-size: x-large;
-  padding:3px;
-
+  padding: 3px;
 }
 
 .filter-container button.active.hard {
@@ -79,8 +76,7 @@
   font-size: large;
   box-shadow: #000;
   font-size: x-large;
-  padding:3px;
-
+  padding: 3px;
 }
 
 .filter-container button.easy {

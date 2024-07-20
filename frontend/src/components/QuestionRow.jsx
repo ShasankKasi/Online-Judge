@@ -41,22 +41,22 @@ const DifficultyBox = styled.div`
   line-height: 20px;
   background-color: ${(props) => {
     switch (props.$level) {
-      case 'easy':
-        return '#28a745'; // Green
-      case 'medium':
-        return '#ffc107'; // Orange
-      case 'hard':
-        return '#dc3545'; // Red
+      case "easy":
+        return "#28a745";
+      case "medium":
+        return "#ffc107";
+      case "hard":
+        return "#dc3545";
       default:
-        return '#6c757d'; // Gray for undefined difficulty
+        return "#6c757d";
     }
   }};
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
-  justify-content: center; /* Center horizontally */
-  flex: 1; /* Allow the wrapper to grow and take available space */
+  justify-content: center;
+  flex: 1;
 `;
 
 export default function QuestionRow({ question }) {
@@ -76,7 +76,8 @@ export default function QuestionRow({ question }) {
         </QuestionTitle>
       </ContentWrapper>
       <DifficultyBox $level={question.difficulty}>
-        {question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}
+        {question.difficulty.charAt(0).toUpperCase() +
+          question.difficulty.slice(1)}
       </DifficultyBox>
     </Row>
   );

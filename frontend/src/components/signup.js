@@ -33,6 +33,7 @@ const Signup = () => {
         toast.error("Please fill in all fields");
       }
     } catch (error) {
+      setError(error);
       toast.error("Error in details entered. Please check the details again");
     }
   };

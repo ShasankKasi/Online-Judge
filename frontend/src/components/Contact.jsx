@@ -5,13 +5,13 @@ import Homebar from "./Homebar";
 
 const ContactContainer = styled.div`
   padding: 3rem;
-  background-color: #f0f0f0; 
-  color: #333; 
+  background-color: #f0f0f0;
+  color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: Arial, sans-serif; 
-  border: 2px solid #ccc; 
+  font-family: Arial, sans-serif;
+  border: 2px solid #ccc;
   border-radius: 15px;
   margin: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -37,7 +37,7 @@ const ContactItem = styled.p`
 `;
 
 const EmailLink = styled.a`
-  color: #333; 
+  color: #333;
   text-decoration: none;
 `;
 
