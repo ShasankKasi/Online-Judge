@@ -2,7 +2,7 @@
 
 This online judge platform is designed to help users solve coding problems in various languages. It provides functionality to run test cases and submit solutions for evaluation. The platform is built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 
-![image](https://github.com/user-attachments/assets/9ae19f3a-634b-4bb5-be0b-b077bcf1fb2d)
+![image](https://github.com/user-attachments/assets/51106594-3db1-44d4-afb2-0d0d326d5cb0)
 
 ## Features
 
@@ -38,7 +38,7 @@ This online judge platform is designed to help users solve coding problems in va
 
 ## Deployment
 
-Check out the live version of our platform here: [Deployment Link](http://13.51.168.80:8000)
+Check out the live version of our platform here: (http://13.51.168.80:8000)
 
 ## Contact
 
