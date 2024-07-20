@@ -11,7 +11,7 @@ if (!fs.existsSync(outputPath)) {
 const execute = (filePath, filePath2, language) => {
   if (language === "py") {
     return new Promise((resolve, reject) => {
-      exec(`python3 "${filePath}" < "${filePath2}"`, (error, stdout, stderr) => {
+      exec(`python "${filePath}" < "${filePath2}"`, (error, stdout, stderr) => {
         if (error) {
           // console.log(error);
           reject({ error, stderr });
