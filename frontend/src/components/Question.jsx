@@ -10,17 +10,20 @@ import SpinnerMini from "../ui/SpinnerMini";
 import Spinner from "../ui/Spinner";
 import PageNotFound from "./PageNotFound";
 import { MdAccessTimeFilled } from "react-icons/md";
-import AceEditor from 'react-ace';
+import AceEditor from "react-ace";
 
 // Import a theme and mode (language) for the editor
-import 'ace-builds/src-noconflict/theme-github';
-import 'ace-builds/src-noconflict/mode-python';
-import 'ace-builds/src-noconflict/mode-c_cpp';
-import 'ace-builds/src-noconflict/mode-java';
-import 'ace-builds/src-noconflict/ext-language_tools';
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-c_cpp";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 // Set the base path for ACE editor
-window.ace.config.set("basePath", "https://cdn.jsdelivr.net/npm/ace-builds@1.23.1/src-noconflict/");
+window.ace.config.set(
+  "basePath",
+  "https://cdn.jsdelivr.net/npm/ace-builds@1.23.1/src-noconflict/"
+);
 
 const handleClick = async (
   testcases,
@@ -108,12 +111,12 @@ const Question = () => {
   const [error, setError] = useState(false);
   const [verdict, setVerdict] = useState([]);
   const [timeTaken, setTimeTaken] = useState(null);
-  
+
   const modeMap = {
-    cpp: 'c_cpp',
-    c: 'c_cpp',
-    py: 'python',
-    java: 'java'
+    cpp: "c_cpp",
+    c: "c_cpp",
+    py: "python",
+    java: "java",
   };
 
   useEffect(() => {
@@ -286,8 +289,8 @@ const Question = () => {
         >
           <div>
             <h1>Submission</h1>
-            {correct && <div className="tick">&#9989;</div>}
-            {!correct && <div className="wrong">&#10006;</div>}
+            {correct && <div className="tick">✅</div>}
+            {!correct && <div className="wrong">❌</div>}
           </div>
           <table className="verdict-table">
             <thead>
@@ -302,15 +305,32 @@ const Question = () => {
                 <td className="heading">{question.testcases.length}</td>
                 <td>{pass}</td>
                 <td>
-                  <strong>{correct ? "All Test Cases Passed" : "Test Cases Failed"}</strong>
+                  <strong>
+                    {correct
+                      ? "All Test Cases Passed ✅"
+                      : "Test Cases Failed ❌ "}
+                  </strong>
                 </td>
               </tr>
             </tbody>
           </table>
           {timeTaken && (
             <div className="time-taken">
-              
-              <p> <MdAccessTimeFilled />Time Taken: {timeTaken} seconds</p>
+              <p>
+                <MdAccessTimeFilled /> Time Taken: {timeTaken} seconds
+              </p>
+            </div>
+          )}
+          {!correct && (
+            <div className="info">
+              <p>Your Program failed for 😔:</p>
+              <p>Input:</p>
+              <p className="failed-input">
+              <pre>
+          {question.testcases[
+            solve.findIndex(item => item === false)
+          ]?.input || "No failed test cases found"}
+        </pre></p>
             </div>
           )}
         </div>
@@ -318,5 +338,4 @@ const Question = () => {
     </div>
   );
 };
-
 export default Question;
