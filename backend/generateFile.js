@@ -20,5 +20,6 @@ const generateFile=async(language,code,input)=>{
     await fs.writeFileSync(filePath,code);
     await fs.writeFileSync(filePath2,input);
     return {filePath,filePath2};
+
 }
 module.exports={generateFile};

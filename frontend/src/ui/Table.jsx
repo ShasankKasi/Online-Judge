@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
 import styled from "styled-components";
 
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
-
   font-size: 1.4rem;
   background-color: var(--color-grey-0);
   border-radius: 7px;
@@ -22,7 +21,6 @@ const CommonRow = styled.div`
 
 const StyledHeader = styled(CommonRow)`
   padding: 1.6rem 2.4rem;
-
   background-color: var(--color-grey-50);
   border-bottom: 1px solid var(--color-grey-100);
   text-transform: uppercase;
@@ -90,7 +88,15 @@ function Row({ children }) {
 function Body({ data, render }) {
   if (!data) return <Empty>No data to show at the moment</Empty>;
 
-  return <StyledBody>{data.map(render)}</StyledBody>;
+  return (
+    <StyledBody>
+      {data.map((item, index) => (
+        <React.Fragment key={item.id || index}>
+          {render(item)}
+        </React.Fragment>
+      ))}
+    </StyledBody>
+  );
 }
 
 Table.Header = Header;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
 import "./Forgot.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Homebar from "./Homebar";
 export default function Forgot() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ export default function Forgot() {
   }
   return (
     <div>
-      <Navbar />
+      <Homebar />
       <div className="containeer">
         <p className="p">Enter your Email to get OTP</p>
         <form action="POST" className="form">

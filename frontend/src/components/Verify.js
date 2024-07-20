@@ -1,48 +1,76 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Navbar from "./Navbar";
 import axios from "axios";
 import "./Verify.css";
 import toast from "react-hot-toast";
+import Homebar from "./Homebar";
+import { useQueryClient } from "@tanstack/react-query";
+
 export default function Verify() {
   const [number, setNumber] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const queryClient = useQueryClient();
   const email = location.state.email;
+
   async function handleSubmit(e) {
     e.preventDefault();
+    if (number.length !== 4 || isNaN(number)) {
+      toast.error("Please enter a valid 4-digit OTP");
+      return;
+    }
+    setIsLoading(true);
     try {
       const response = await axios.post("/api/verify", {
         email,
-        number, // assuming you have the 'otp' variable defined
+        number,
       });
+      setIsLoading(false);
       if (response.data && response.data.status === "success") {
         toast.success("Verification done");
-        const name = response.data.userName;
-        navigate("/home", { state: { email, name } });
+        queryClient.setQueryData(
+          ["user"],
+          response.data.email,
+          response.data.name
+        );
+        queryClient.setQueryData(["isAuthenticated"], { auth: true });
+        navigate("/home", {
+          state: { email: response.data.email, name: response.data.name },
+        });
       } else {
         toast.error("Otp is incorrect");
       }
     } catch (e) {
-      toast.error("Unknown error occured")
+      setIsLoading(false);
+      toast.error("Unknown error occurred");
     }
+  }
+
+  function handleResendOtp() {
+    navigate("/forgot");
   }
 
   return (
     <div>
-      <Navbar />
-
+      <Homebar />
       <div className="containers">
-        <input
-          type="text"
-          value={number}
-          maxLength={4}
-          onChange={(e) => setNumber(e.target.value)}
-          placeholder="Enter Otp"
-        ></input>
-        <br></br>
-        <button type="submit" onClick={handleSubmit}>
-          Submit
+        <h1>OTP Verification </h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={number}
+            maxLength={4}
+            onChange={(e) => setNumber(e.target.value)}
+            placeholder="Enter OTP"
+          />
+          <br />
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Verifying..." : "Submit"}
+          </button>
+        </form>
+        <button onClick={handleResendOtp} disabled={isLoading}>
+          Resend OTP
         </button>
       </div>
     </div>

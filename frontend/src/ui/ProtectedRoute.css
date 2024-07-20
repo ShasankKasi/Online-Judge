@@ -1,6 +1,6 @@
 .FullPage{
   height: 100vh;
-  background-color: var(--color-grey-50);
+  background-color: rgba(23, 137, 213, 0.618);
   display: flex;
   align-items: center;
   justify-content: center;

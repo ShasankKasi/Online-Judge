@@ -1,18 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-
-import "./Login.css";
-import Navbar from "./Navbar";
 import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
+import Homebar from "./Homebar";
+import { FaUser, FaLock } from "react-icons/fa";
+import "./Login.css";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  function handleForgot() {
-    navigate("/forgot");
-  }
+  const queryClient = useQueryClient();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,75 +21,89 @@ export default function Login() {
         email,
         password,
       });
+
       if (response.data.status === "success") {
-        navigate("/home", {
-          state: { email: response.data.email, name: response.data.name },
-        });
+        queryClient.setQueryData(["user"], {email:response.data.email,name:response.data.name});
+        queryClient.setQueryData(["isAuthenticated"],{ auth:true,});
+        navigate("/home");
       } else if (response.data.status === "admin") {
+        queryClient.setQueryData(["user"], {email:response.data.email,name:response.data.name});
+        queryClient.setQueryData(["isAuthenticated"],{ auth:true,});
         navigate("/admin");
       } else if (response.data.status === "doesnotexist") {
-        toast.error("Do Sign up First");
+        toast.error("User does not exist. Please sign up.");
       } else if (response.data.status === "incorrect password") {
-        toast.error("Please Enter Correct Password");
+        toast.error("Incorrect password. Please try again.");
       }
-    } catch (e) {
-      toast.error("Unknown error occured")
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else if (error.request) {
+        toast.error("Network error occurred. Please try again.");
+      } else {
+        toast.error("Unknown error occurred. Please try again later.");
+      }
     }
   }
 
   return (
     <div>
-      <Navbar />
-      <div className="centered-container">
-        <img src="/logo.png" className="logo" alt="soldier" />
-        <div className="login">
-          <h1 className="container">
-            <strong>Log in</strong>
-          </h1>
-          <form action="POST">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-            />
-            <br />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-            />
-            <br />
-            <button type="submit" onClick={handleSubmit}>
-              Submit
-            </button>
-          </form>
-          <br />
-          <Link
-            to="/signup"
-            style={{
-              borderRadius: "5px",
-              marginRight: "55px",
-              textDecoration: "none",
-              color: "black",
-            }}
-          >
-            Sign up
-          </Link>
-          <button
-            onClick={handleForgot}
-            style={{
-              borderRadius: "5px",
-              marginLeft: "140px",
-              padding: "3px",
-              fontSize: "18px",
-              textDecoration: "none",
-              color: "black",
-            }}
-          >
-            Forgot Password?
-          </button>
+      <Homebar />
+      <div className="main">
+        <div className="sub-main">
+          <div className="imgs">
+            <div className="container-image">
+              <img
+                src="/logo.png"
+                className="profile-icon"
+                alt="Logo of Code Soldiers"
+              />
+            </div>
+          </div>
+          <div>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="input-container">
+                <FaUser className="email-icon" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="name"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="input-container">
+                <FaLock className="password-icon" />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="name"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="login-button">
+                <button type="submit">Login</button>
+              </div>
+            </form>
+            <div className="link">
+              <button
+                className="link-button"
+                onClick={() => navigate("/forgot")}
+              >
+                Forgot password?
+              </button>
+              <button
+                className="link-button"
+                onClick={() => navigate("/signup")}
+              >
+                Sign Up?
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

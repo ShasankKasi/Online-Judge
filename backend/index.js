@@ -7,10 +7,11 @@ const cors = require("cors");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
 const { generateFile } = require("./generateFile");
-const { executeCpp } = require("./executeCpp");
+const { execute } = require("./execute");
 const { Long } = require("mongodb");
 const bodyParser = require('body-parser');
 const path=require('path');
+const { log } = require("console");
 
 const otpStore = {};
 
@@ -146,33 +147,24 @@ app.post("/api/verify", async (req, res) => {
   }
 });
 
-// Compiler post requests
-// app.post("/api/question1", async (req, res) => {
-//   // const language=req.body.language;
-//   // const code=req.body.code;
-//   const { language, code } = req.body;
-//   if (code === undefined) {
-//     return res.status(404).json({ success: false, error: "Code is empty" });
-//   }
-//   try {
-//     const filePath = await generateFile(language, code);
-//     const output = await executeCpp(filePath);
-//     res.json({ filePath, output }, { status: "success" });
-//   } catch (error) {
-//     res.status(500).json({ error: error });
-//   }
-// });
-
 // Home Get requests
 app.get("/api/home", async (req, res) => {
   try {
-    const users = await questionstore.find();
-    res.json(users);
+    const { difficulty } = req.query;
+    let filter = {};
+
+    if (difficulty && difficulty !== "all") {
+      filter.difficulty = difficulty;
+    }
+
+    const questions = await questionstore.find(filter);
+    res.json(questions);
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 app.get("/api/question/:id", async (req, res) => {
   try {
@@ -220,7 +212,7 @@ app.post("/api/question/:id", async (req, res) => {
         let input = testcases[i].input;
         let output_req = testcases[i].output.trim();
         let { filePath, filePath2 } = await generateFile(language, code, input);
-        let output = await executeCpp(filePath, filePath2);
+        let output = await execute(filePath, filePath2,language);
         output = output.trim();
         output_req = output_req.trim();
 
@@ -238,7 +230,7 @@ app.post("/api/question/:id", async (req, res) => {
       }
       else res.json({ status: "Fail" ,results,count,solve});
     } catch (e) {
-      res.json({ status:"Compilation Error",e});
+      res.json({ status:"Compilation Error",err:e});
     }
   }
 });

@@ -1,26 +1,20 @@
-import useUser from "../features/authentication/useUser";
-import Spinner from "./Spinner";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
-  const { user, isLoading, isAuthenticated } = useUser();
-  useEffect(
-    function () {
-      if (!isAuthenticated && !isLoading) navigate("/login");
-    },
-    [isAuthenticated, isLoading, navigate]
-  );
-  if (isLoading)
-    return (
-      <div className="FullPage">
-        <Spinner />;
-      </div>
-    );
+  const queryClient = useQueryClient();
+  const authData = queryClient.getQueryData(["isAuthenticated"]);
+  const isAuthenticated = authData ? authData.auth : false;
 
-  if (isAuthenticated) return children;
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
+
+  return isAuthenticated ? children : <Navigate to="/" replace />;
 }
 
 export default ProtectedRoute;

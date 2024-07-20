@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Homebar from "./Homebar";
 // import { useNavigate } from "react-router-dom";
 
 export default function Admin() {
@@ -9,8 +9,11 @@ export default function Admin() {
   const [description, setDescription] = useState("");
   const [input, setInput] = useState([]);
   const [output, setOutput] = useState([]);
+  const [difficulty,setDifficulty]=useState('easy');
   // const navigate = useNavigate();
-
+  const handleChange = (event) => {
+    setDifficulty(event.target.value);
+  };
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -27,9 +30,9 @@ export default function Admin() {
         title,
         description,
         testcases,
+        difficulty,
       });
       if (response.data.status === "success") {
-        window.location.reload();
         toast.success("Question Submitted Successfullly.\nPost Another Question");
       }
     } catch (e) {
@@ -37,8 +40,9 @@ export default function Admin() {
     }
   }
   return (
+    
     <div>
-      <Navbar />
+      <Homebar />
       <form action="POST" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -49,6 +53,7 @@ export default function Admin() {
         <textarea
           placeholder="Type the Question here"
           value={description}
+          cols="204"
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
         <div>
@@ -135,6 +140,17 @@ export default function Admin() {
             ></textarea>
           </div>
         </div>
+            <label htmlFor="difficulty">Select Difficulty Level : </label>
+      <select
+        id="difficulty"
+        name="difficulty"
+        value={difficulty}
+        onChange={handleChange}
+      >
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>

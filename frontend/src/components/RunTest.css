@@ -1,49 +1,46 @@
-.boxx{
-    border:"1px";
-    border-radius:10px;
-    height:"50px";
-    width:"9px";
-    margin-bottom:10px;
-    padding:12px;
-    color: rgb(25, 25, 25);
-}
-
-.case1{
-    background-color: rgb(208, 205, 200);
-    margin: auto 50px;
+.boxx {
+    border: 2px solid #e6ecf0;
     border-radius: 10px;
-    
-}
-
-.case1 button:hover{
-    background-color: rgb(208, 205, 200);
-}
-.case2{
     background-color: white;
+    padding: 20px;
+    color: rgb(25, 25, 25);
+    width: 80vh;
+    margin: 20px auto; /* Center the box and add margin */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Increase the gap between buttons */
+    margin-bottom: 20px;
+  }
+  
+  .case {
+    padding: 10px 20px;
     border-radius: 10px;
-    margin-bottom: 50px;
-}
-.case2 button:hover{
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .case.active {
     background-color: rgb(208, 205, 200);
-}
-.inputt{
+  }
+  
+  .case:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .results {
+    width: 100%;
+  }
+  
+  .inputt, .expected-output {
     padding: 15px;
+    font-size: 17px;
     border-radius: 10px;
-    width:40vw;
-    font-size:17px;
-    text-align:left;
-    /* margin: bottom 0; */
-    margin-left:8vw;
     background-color: rgb(224, 228, 231);
-}
-
-.expected-output{
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 10px;
-    width:40vw;
-    text-align:left;
-    margin-bottom:45px;
-    margin-left:8vw;
-    background-color: rgb(224, 228, 231);
-}
+    margin: 10px 0;
+  }
+  

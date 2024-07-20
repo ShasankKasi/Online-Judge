@@ -1,6 +1,98 @@
-.signup{
-    max-width:500px;
-    margin:0 auto;
-    padding:20px;
-    background-color: aquamarine;
-}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #e1e3eb;
+  }
+  
+  .main {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .sub-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    padding: 6vh;
+    border-radius: 1px;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20vh;
+  }
+  
+  .profile-icon {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  form {
+    width: 100%;
+  }
+  
+  .input-field {
+    width: calc(100% - 40px); /* Adjusted width */
+    height: 30px;
+    border-radius: 1px; /* Reduced border radius */
+    box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.1); /* Reduced box shadow */
+    border: 1px solid #ddd;
+    outline: none;
+    background-color: #fff;
+    margin-bottom: 16px;
+    padding-left: 20px; /* Adjusted padding */
+    padding-right: 20px; /* Adjusted padding */
+    font-size: 16px;
+  }
+  
+  .input-field::placeholder {
+    color: #aaa;
+  }
+  
+  .submit-button {
+    width: 100%;
+    height: 42px;
+    border-radius: 1px;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  .link {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 16px;
+    color: blue;
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  

@@ -7,6 +7,7 @@ const rotate = keyframes`
 `;
 
 const Spinner = styled.div`
+background-image:'/logo.png';
   margin: 4.8rem auto;
   width: 6.4rem;
   aspect-ratio: 1;
